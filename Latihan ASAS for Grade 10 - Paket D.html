@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAS Bahasa Inggris SMK - Tata Busana (Paket D - Kelas 10)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-teal-500 selection:text-white">
+
+    <!-- MAIN CONTAINER -->
+    <div id="app" class="flex-1 flex flex-col w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+        
+        <!-- HEADER -->
+        <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-teal-600 text-white p-3 rounded-xl shadow-md">
+                    <i class="fa-solid fa-scissors text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900">ASAS Bahasa Inggris SMK - Grade 10 (Paket D)</h1>
+                    <p class="text-xs text-slate-500">Program Keahlian: Desain & Produksi Busana (Fashion Design)</p>
+                </div>
+            </div>
+            <div id="header-student-info" class="hidden text-right text-xs sm:text-sm bg-slate-100 px-3 py-2 rounded-xl border border-slate-200">
+                <span id="info-name" class="font-semibold text-slate-800 block"></span>
+                <span class="text-slate-500">NIS: <span id="info-nis"></span> | Kelas: <span id="info-class"></span></span>
+            </div>
+        </header>
+
+        <!-- VIEW 1: LOGIN PAGE -->
+        <section id="view-login" class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 max-w-lg w-full mx-auto my-auto">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-900">Login Peserta Ujian</h2>
+                <p class="text-sm text-slate-500 mt-1">Silakan masukkan data diri Anda dengan benar sebelum memulai Latihan Paket D (Kelas 10).</p>
+            </div>
+            <form id="form-login" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Lengkap</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="login-name" required placeholder="Contoh: Siti Aminah" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-sm transition">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nomor Induk Siswa (NIS)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-id-card"></i></span>
+                        <input type="text" id="login-nis" required placeholder="Contoh: 101010" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-sm transition">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Kelas</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-school"></i></span>
+                        <select id="login-class" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-sm transition">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="X Tata Busana A">X Tata Busana A</option>
+                            <option value="X Tata Busana B">X Tata Busana B</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-200 transition duration-200 flex items-center justify-center space-x-2">
+                    <span>Masuk ke Instruksi Tes</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- VIEW 2: TEST INSTRUCTION PAGE -->
+        <section id="view-instruction" class="hidden bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 max-w-2xl w-full mx-auto my-auto">
+            <div class="text-center mb-6">
+                <div class="inline-flex bg-amber-100 text-amber-700 p-3 rounded-full mb-2">
+                    <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Petunjuk & Aturan Ujian (Paket D)</h2>
+                <p class="text-sm text-slate-500 mt-1">Harap baca dengan cermat sebelum menekan tombol mulai.</p>
+            </div>
+            
+            <div class="space-y-4 bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200 text-sm text-slate-700">
+                <div class="flex items-start space-x-3">
+                    <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+                    <p><strong>Materi Ujian (Dasar Kejuruan X):</strong> 40 soal pilihan ganda (HOTS). Fokus materi: Greeting & Introduction, Asking/Giving Opinion, Descriptive Texts, Giving Command, Report Texts, dan Procedure Texts di bidang busana.</p>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+                    <p><strong>Mode Layar Penuh (Fullscreen):</strong> Aplikasi akan otomatis masuk ke mode layar penuh saat tes dimulai.</p>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-amber-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+                    <p><strong>Sistem Pendeteksi Kecurangan:</strong> Dilarang berpindah tab atau mengecilkan layar. Batas peringatan maksimal <strong>3 kali</strong>. Jika melanggar, ujian otomatis terkirim!</p>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
+                    <p><strong>Waktu & Navigasi:</strong> Waktu tes adalah 60 menit. Navigasi soal tersedia di panel sebelah kanan layar.</p>
+                </div>
+            </div>
+
+            <button onclick="startExam()" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-emerald-200 transition duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-play"></i>
+                <span>Saya Mengerti & Mulai Ujian</span>
+            </button>
+        </section>
+
+        <!-- VIEW 3: EXAM RUNNING PAGE -->
+        <section id="view-exam" class="hidden flex-1 flex flex-col space-y-4">
+            
+            <!-- TOP BAR -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <span id="exam-lesson-badge" class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1.5 rounded-lg uppercase tracking-wide">Lesson 1</span>
+                    <span class="text-xs text-slate-500 font-medium">Soal <span id="current-q-num">1</span> dari 40</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-1.5 bg-rose-50 text-rose-700 px-3 py-1.5 rounded-xl border border-rose-200 font-bold text-sm">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timer-display">60:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1">
+                
+                <!-- QUESTION CARD -->
+                <div class="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-base font-bold text-slate-900">Pertanyaan No. <span id="q-number-title">1</span></h3>
+                            <button onclick="toggleFlagCurrent()" id="btn-flag" class="text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 transition flex items-center space-x-1.5">
+                                <i class="fa-regular fa-flag text-amber-500"></i>
+                                <span id="flag-text">Tandai Ragu</span>
+                            </button>
+                        </div>
+
+                        <div id="question-text" class="text-slate-800 text-base leading-relaxed mb-6">
+                            <!-- Question text -->
+                        </div>
+
+                        <div id="options-container" class="space-y-3">
+                            <!-- Options -->
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-100">
+                        <button onclick="prevQuestion()" id="btn-prev" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-sm font-semibold transition flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Sebelumnya</span>
+                        </button>
+                        <button onclick="nextQuestion()" id="btn-next" class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-semibold transition flex items-center space-x-2 shadow-md shadow-teal-100">
+                            <span>Selanjutnya</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QUESTION NAVIGATOR -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Navigasi Soal</h4>
+                        <div id="navigator-grid" class="grid grid-cols-5 gap-2 max-h-64 lg:max-h-[380px] overflow-y-auto custom-scrollbar p-1">
+                            <!-- Buttons -->
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 mb-3">
+                            <div class="flex items-center space-x-1.5">
+                                <div class="w-3 h-3 bg-teal-600 rounded"></div>
+                                <span>Terjawab</span>
+                            </div>
+                            <div class="flex items-center space-x-1.5">
+                                <div class="w-3 h-3 bg-amber-500 rounded"></div>
+                                <span>Ragu-ragu</span>
+                            </div>
+                            <div class="flex items-center space-x-1.5">
+                                <div class="w-3 h-3 bg-slate-200 rounded"></div>
+                                <span>Belum</span>
+                            </div>
+                        </div>
+                        <button onclick="confirmSubmitExam()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-xl text-sm shadow-md shadow-emerald-100 transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Selesai & Kumpulkan</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW 4: RESULT PAGE -->
+        <section id="view-result" class="hidden bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 max-w-3xl w-full mx-auto my-auto text-center">
+            <div class="inline-flex bg-emerald-100 text-emerald-600 p-4 rounded-full mb-4">
+                <i class="fa-solid fa-award text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900">Ujian Selesai!</h2>
+            <p class="text-sm text-slate-500 mt-1">Jawaban Anda telah berhasil dikumpulkan dan direkam ke spreadsheet guru.</p>
+
+            <div class="my-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left">
+                <div class="text-center mb-4">
+                    <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Nilai Akhir Anda</div>
+                    <div id="result-score" class="text-5xl font-extrabold text-teal-600">0</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 border-t border-slate-200 pt-4 text-sm mb-4">
+                    <div>
+                        <span class="text-slate-500 block text-xs">Nama Siswa</span>
+                        <span id="res-name" class="font-semibold text-slate-800"></span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block text-xs">Nomor Induk (NIS)</span>
+                        <span id="res-nis" class="font-semibold text-slate-800"></span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block text-xs">Kelas</span>
+                        <span id="res-class" class="font-semibold text-slate-800"></span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block text-xs">Jawaban Benar</span>
+                        <span id="res-correct" class="font-semibold text-emerald-600">0 / 40</span>
+                    </div>
+                </div>
+
+                <div id="reflection-box" class="bg-teal-50 border border-teal-200 rounded-xl p-4 text-sm text-teal-900">
+                    <h4 class="font-bold mb-1 flex items-center space-x-2">
+                        <i class="fa-solid fa-lightbulb text-teal-600"></i>
+                        <span>Refleksi Kemampuan Siswa</span>
+                    </h4>
+                    <p id="reflection-text" class="text-teal-800 leading-relaxed text-xs sm:text-sm"></p>
+                </div>
+            </div>
+
+            <div id="submission-status" class="text-xs text-slate-500 mb-6 italic">
+                Mengirim data ke server guru...
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="toggleReviewSection()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 px-6 rounded-xl shadow transition text-sm flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span id="btn-toggle-review-text">Lihat Pembahasan Soal</span>
+                </button>
+                <button onclick="location.reload()" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-teal-200 transition text-sm">
+                    Keluar / Ulangi Latihan
+                </button>
+            </div>
+
+            <div id="review-section" class="hidden mt-8 text-left border-t border-slate-200 pt-6">
+                <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open text-teal-600"></i>
+                    <span>Pembahasan Lengkap & Kunci Jawaban (Paket D - Grade 10)</span>
+                </h3>
+                <div id="review-list" class="space-y-6 max-h-[500px] overflow-y-auto custom-scrollbar pr-2">
+                    <!-- Review items -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- WARNING MODAL (CHEATING DETECTOR) -->
+    <div id="warning-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center border border-rose-100 animate-bounce-short">
+            <div class="inline-flex bg-rose-100 text-rose-600 p-3 rounded-full mb-3">
+                <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Pelanggaran Terdeteksi</h3>
+            <p id="warning-msg" class="text-sm text-slate-600 mb-6 leading-relaxed">
+                ⚠️ Peringatan: kamu terdeteksi keluar dari mode layar penuh.
+            </p>
+            <button onclick="dismissWarning()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition text-sm">
+                Kembali ke Layar Penuh & Lanjutkan
+            </button>
+        </div>
+    </div>
+
+    <!-- CONFIRM SUBMIT MODAL -->
+    <div id="submit-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center border border-slate-100">
+            <div class="inline-flex bg-teal-100 text-teal-600 p-3 rounded-full mb-3">
+                <i class="fa-solid fa-circle-question text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Konfirmasi Pengumpulan</h3>
+            <p class="text-sm text-slate-600 mb-6">Apakah Anda yakin ingin mengumpulkan jawaban ujian sekarang? Pastikan semua soal telah terjawab dengan teliti.</p>
+            <div class="flex space-x-3">
+                <button onclick="closeSubmitModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-xl transition text-sm">
+                    Periksa Kembali
+                </button>
+                <button onclick="submitExam()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition text-sm">
+                    Ya, Kumpulkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 text-xs text-slate-400">
+        &copy; 2026 SMK English Assessment System | Developed by Mr. Ahmad Syafi'i, S.Pd., M.Pd.
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA UJIAN PAKET D: 40 SOAL KELAS 10 (DASAR-DASAR BUSANA)
+        const questions = [
+            // LESSON 1: Greeting, Introduction, and leave taking (6 soal)
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: It is Monday morning. A highly respected international fashion designer, Ms. Laurent from Paris, visits your vocational school for a special guest lecture on sustainable fashion. The principal assigns you, the top 10th-grade student, to welcome her at the main gate as she steps out of her car.",
+                question: "What is the most formal, polite, and appropriate greeting to use in this situation?",
+                options: [
+                    "A. Hey Ms. Laurent, what's up? Welcome to our school. The principal is waiting.",
+                    "B. Good morning, Ms. Laurent. It is a great honor to welcome you to our fashion department today.",
+                    "C. Hello, how are you doing today? Come in, the lecture is about to start.",
+                    "D. Nice to meet you. Are you ready to teach us about sustainability?",
+                    "E. Good day. You are slightly late, but welcome to our campus anyway."
+                ],
+                answer: 1,
+                explanation: "Menyapa tamu kehormatan atau profesional senior dari luar negeri memerlukan bahasa yang sangat formal dan menjunjung tinggi kesopanan. 'Good morning... It is a great honor to welcome you...' adalah pilihan yang paling menonjolkan etiket profesionalisme kerja."
+            },
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: You are a 10th-grade intern on your very first day at 'Elegance', a bustling local couture boutique. The production manager brings you into the loud, busy sewing room where five senior tailors are focused on their machines. The manager stops the machines and asks you to introduce yourself.",
+                question: "How should you properly introduce yourself to the senior team to show enthusiasm and respect?",
+                options: [
+                    "A. I am the new intern. I hope you guys do all the hard work for me so I can just watch.",
+                    "B. Hello everyone, my name is Sarah. I am a 10th-grade student from SMK 1, and I am very excited to learn and work with all of you.",
+                    "C. Hi, I'm Sarah. I already know everything about sewing from my school, so don't worry about teaching me.",
+                    "D. Good morning. What are your names and how long have you worked here?",
+                    "E. Hey guys. I am Sarah. You can just ignore me, I'll be in the corner."
+                ],
+                answer: 1,
+                explanation: "Perkenalan diri di tempat kerja baru (internship) harus menunjukkan rasa hormat kepada senior, antusiasme, dan kerendahan hati ('...very excited to learn and work with all of you.'). Hal ini menciptakan kesan pertama yang positif."
+            },
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: You have just spent the last 45 minutes meticulously taking a client's body measurements for a complex custom wedding dress. The client looks a bit tired but very happy with your service. It is time for her to leave the atelier.",
+                question: "Which expression is the most professional way to take your leave (leave-taking) while providing excellent customer service?",
+                options: [
+                    "A. Okay, I'm done. Bye. See you whenever you want to come back.",
+                    "B. Thank you for your time and patience, Mrs. Smith. We will contact you once the first muslin fitting is ready. Have a wonderful day.",
+                    "C. You can go home now, I have all your measurements written down here.",
+                    "D. Goodbye. Don't forget to pay the receptionist on your way out.",
+                    "E. See you later. Your wedding dress will be very difficult to make, but we will try."
+                ],
+                answer: 1,
+                explanation: "Leave-taking dengan klien VIP harus ditutup dengan ucapan terima kasih atas waktu mereka, memberikan informasi langkah/tahapan selanjutnya ('contact you once the fitting is ready'), dan mendoakan hal yang baik ('Have a wonderful day')."
+            },
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: It is a chaotic afternoon in the boutique. The sewing machines are running loudly in the background. Suddenly, the front desk telephone rings. You pick up the receiver to answer a call from a major fabric supplier.",
+                question: "What is the standard, most professional greeting when answering a business phone call in the fashion industry?",
+                options: [
+                    "A. Hello, who is this calling?",
+                    "B. Yes, what do you want? We are very busy right now.",
+                    "C. Good morning, Elegance Boutique, Dina speaking. How may I assist you?",
+                    "D. Hi, Elegance Boutique. Please speak quickly, I have to go back to sewing.",
+                    "E. Good morning, wait a minute, I need to turn off the machine."
+                ],
+                answer: 2,
+                explanation: "Standar sapaan telepon bisnis meliputi 4 elemen penting: Salam pembuka (Good morning) -> Nama Perusahaan (Elegance Boutique) -> Identitas diri penerima (Dina speaking) -> Penawaran bantuan (How may I assist you?)."
+            },
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: You are visiting a massive, crowded textile market in Tanah Abang with your classmate, Budi. You approach the store of Mr. Chen, a supplier you know well. Budi needs to buy 20 meters of pure silk for his final school project, and you want to introduce him to Mr. Chen.",
+                question: "Which phrase correctly and formally introduces a third party in a professional sourcing context?",
+                options: [
+                    "A. Mr. Chen, look at Budi. He needs a lot of silk today.",
+                    "B. Mr. Chen, I would like to introduce my classmate, Budi. He is currently sourcing pure silk for our final school project.",
+                    "C. Budi, this is Mr. Chen. Mr. Chen, this is Budi. Sell him the silk.",
+                    "D. This guy standing here is Budi. Give him a student discount.",
+                    "E. Mr. Chen, do you know Budi? He is my friend from school."
+                ],
+                answer: 1,
+                explanation: "Memperkenalkan pihak ketiga secara profesional kepada mitra bisnis menggunakan frasa 'I would like to introduce...' yang kemudian langsung diikuti dengan konteks/tujuan mengapa mereka dipertemukan ('sourcing pure silk...')."
+            },
+            {
+                lesson: "Lesson 1: Greeting & Introduction",
+                context: "Situation: You are presenting a highly detailed, hand-painted watercolor sketch of a couture gown to a client. Suddenly, you accidentally spill a small drop of water on the corner of the paper. You have already apologized, but you need to end the conversation gracefully to go to the back room and fix or reprint the sketch.",
+                question: "How do you perform a polite leave-taking in this slightly awkward situation without causing the client to panic?",
+                options: [
+                    "A. I am so sorry. Please excuse me for a brief moment while I go to the studio to reprint this sketch for you.",
+                    "B. Bye, I'm going to run away now before it gets worse.",
+                    "C. It's just a little water. See you later, I'll be back.",
+                    "D. I apologize deeply. Good night, let's cancel this meeting.",
+                    "E. Sorry about that. You can leave the room now."
+                ],
+                answer: 0,
+                explanation: "Dalam situasi canggung akibat kesalahan kecil, pamit sementara (leave-taking) yang profesional dan menenangkan klien adalah dengan meminta izin secara formal ('Please excuse me for a brief moment') sembari memberikan solusi langsung ('while I go... reprint this')."
+            },
+
+            // LESSON 2: Asking and Giving Opinion in Fashion (7 soal)
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Situation: A client is planning a beautiful outdoor beach wedding in Bali. The head designer shows you two different fabrics for the bridal gown: a heavy, thick wool blend and a light, flowing cotton chiffon. She asks: 'What do you think of these two fabrics for the summer beach collection?'",
+                question: "Which of the following is the most logical, technically sound opinion to give?",
+                options: [
+                    "A. In my opinion, the heavy wool is perfect because a beach wedding needs a very dramatic look.",
+                    "B. I don't care at all, both fabrics look too plain to me.",
+                    "C. To my mind, the light cotton chiffon is much more suitable for Bali because it is breathable and flows in the wind, whereas the wool would trap heat and be unbearably hot.",
+                    "D. I think we should just use shiny leather to stand out.",
+                    "E. In my opinion, summer beach dresses don't need expensive fabrics."
+                ],
+                answer: 2,
+                explanation: "Memberikan opini yang berkualitas tinggi (HOTS) di bidang busana harus didasari analisis fungsi kain dan cuaca. Kain yang ringan (light cotton chiffon) lebih masuk akal untuk iklim pantai Bali karena 'breathable' (menyerap keringat/bernapas) dibanding wol yang menahan panas."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Situation: A high school girl is preparing for her prom. She tries on a midi dress that makes her look much shorter because the heavy hemline cuts off right at the widest part of her calves. She looks in the mirror, feels insecure about her height, and asks for your honest, professional feedback.",
+                question: "How do you give a critical opinion politely without hurting her feelings?",
+                options: [
+                    "A. Honestly, you look very short and a bit wide in that dress. We should change it.",
+                    "B. I think it looks terrible on your body type. Take it off immediately.",
+                    "C. It is a beautiful dress, but in my opinion, if we raise the hemline just above the knee, it will elongate your legs and flatter your silhouette much more.",
+                    "D. I believe you should just wear a tailored pantsuit instead.",
+                    "E. In my view, the dress is completely fine, your legs are just naturally too short."
+                ],
+                answer: 2,
+                explanation: "Kritik busana (fitting) harus disampaikan secara konstruktif menggunakan metode 'sandwich'. Puji gaunnya terlebih dahulu, lalu berikan opini perbaikan secara teknis ('raise the hemline to elongate your legs') agar klien merasa dibantu, bukan dihina."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Dialogue:\nDesigner A: 'Look at this exquisite floral silk we just imported from Japan. I believe we should add large, dramatic ruffles to the neckline to make the dress stand out on the runway.'\nDesigner B: '____. The fabric's print is already incredibly busy and eye-catching. Adding heavy ruffles will make the design look overcrowded and confusing.'",
+                question: "Which expression best fills the blank to show a polite and professional disagreement?",
+                options: [
+                    "A. I completely agree with your brilliant vision",
+                    "B. You are absolutely wrong about that",
+                    "C. I see your point, but I have to respectfully disagree",
+                    "D. That is the worst idea I have ever heard",
+                    "E. I don't have any opinion on this matter"
+                ],
+                answer: 2,
+                explanation: "Menyatakan ketidaksetujuan secara profesional (polite disagreement) di ruang desain diawali dengan menghargai pendapat/sudut pandang rekan ('I see your point') sebelum menyatakan bantahan dengan alasan yang kuat ('but I have to respectfully disagree')."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Situation: You have spent the last three days creating a complex digital fashion illustration inspired by autumn leaves. You want to know your senior teacher's thoughts on the warm color combination you chose before you submit it for the final grade.",
+                question: "Which is the most formal and respectful way to ask for a superior's opinion?",
+                options: [
+                    "A. Hey sir, what do you think about this picture?",
+                    "B. Is this drawing good or bad? Tell me.",
+                    "C. Would you mind giving me your professional perspective on this color palette, Sir?",
+                    "D. Tell me your honest opinion right now.",
+                    "E. Do you like this color or should I change it?"
+                ],
+                answer: 2,
+                explanation: "Meminta pendapat kepada guru, mentor, atau atasan secara formal sebaiknya menggunakan frasa modal (modal verbs) yang tingkat kesopanannya tinggi, seperti 'Would you mind giving me your professional perspective on...?'."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Situation: A peer in your class suggests using a very cheap, shiny polyester satin to make a casual daytime shirt because they want to save money for their final project. You know from experience that this fabric is notoriously uncomfortable and looks too glamorous for everyday wear.",
+                question: "How do you correctly state your opinion while providing a strong technical reason?",
+                options: [
+                    "A. I think you are crazy for choosing that cheap fabric.",
+                    "B. From my point of view, shiny satin is better suited for evening gowns. For a daytime shirt, it will trap heat, make you sweat, and look far too formal.",
+                    "C. I completely agree, let's use the shiny satin to save money.",
+                    "D. In my opinion, casual daytime shirts should only be made of black leather.",
+                    "E. I believe satin is very cheap, so it's a good idea for school."
+                ],
+                answer: 1,
+                explanation: "Memberikan opini penolakan yang cerdas (HOTS) harus disertai edukasi tekstil. Satin mengkilap (shiny satin) lebih cocok untuk gaun malam (evening gowns). Untuk baju siang hari, bahan tersebut tidak nyaman karena menahan panas badan (trap heat) dan secara estetika terlalu formal."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Dialogue:\nClient: 'I have a job interview next week and I am so nervous. Do you think this A-line skirt makes my hips look too wide and unprofessional?'\nTailor: '____. Actually, the A-line silhouette is universally flattering. It cinches the waist tightly and then flows gently away from the hips, balancing your proportions perfectly.'",
+                question: "Which phrase best completes the tailor's response to reassure the anxious client?",
+                options: [
+                    "A. Yes, I completely agree with your worry.",
+                    "B. Absolutely, you look very wide in that skirt.",
+                    "C. Not at all. In my professional opinion, it does the exact opposite.",
+                    "D. I honestly don't know, it's your own body.",
+                    "E. Maybe you should just wear a long coat to hide it."
+                ],
+                answer: 2,
+                explanation: "Untuk menenangkan keraguan klien (reassure) sebelum momen penting, penjahit harus menolak kekhawatiran tersebut dengan tegas namun lembut ('Not at all') lalu memberikan opini profesional ('In my professional opinion...') yang didukung oleh teori siluet busana dasar."
+            },
+            {
+                lesson: "Lesson 2: Asking & Giving Opinion",
+                context: "Theory of Communication in Fashion:\nDuring a brainstorming session, designers use various phrases either to *ask* for ideas or to *give* their own ideas.",
+                question: "Identify which of the following phrases is strictly used for EXPRESSING (Giving) an opinion, NOT asking for one?",
+                options: [
+                    "A. What are your thoughts on this hemline?",
+                    "B. Do you have any idea how to fix this seam?",
+                    "C. How do you feel about using silk here?",
+                    "D. From my perspective, the collar is too sharp.",
+                    "E. What is your initial reaction to this sketch?"
+                ],
+                answer: 3,
+                explanation: "Frasa 'From my perspective, ...' (Dari sudut pandang saya, ...) adalah ungkapan deklaratif untuk menyatakan/memberikan opini diri sendiri. Pilihan lainnya menggunakan kata tanya (What, Do, How) yang berfungsi untuk meminta (asking) opini orang lain."
+            },
+
+            // LESSON 3: Descriptive Texts for fashion (7 soal)
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Reading Text:\nThe traditional dress form standing in the corner of our school's pattern-making laboratory is an essential and irreplaceable tool for the art of draping. It is heavily padded on the inside and completely covered in a durable, unbleached beige linen fabric. This thick linen outer layer is crucial, as it allows students to aggressively stick hundreds of sharp pins directly into the torso without causing any permanent damage to the form. Unlike the stiff, plastic display mannequins found in retail shopping mall windows, this professional dress form is purely functional; it does not have a head or arms. It is securely mounted on a heavy, adjustable cast-iron stand with rolling wheels, emitting a soft metallic clank when moved across the room. Furthermore, thin red style lines are permanently printed directly on the canvas surface to clearly indicate the bust, waist, and hip circumferences, helping students align their muslin fabric accurately with the human anatomy.",
+                question: "What is the primary literary purpose of this descriptive text?",
+                options: [
+                    "A. To explain the step-by-step procedure of how to sew a dress on a mannequin.",
+                    "B. To strongly persuade the school principal to buy a new dress form.",
+                    "C. To vividly describe the physical characteristics, materials, and specific functions of a professional dress form.",
+                    "D. To narrate a short story about a broken mannequin in the laboratory.",
+                    "E. To report statistical factual data about the global history of mannequins."
+                ],
+                answer: 2,
+                explanation: "Tujuan utama Teks Deskriptif (Descriptive Text) adalah mendeskripsikan secara rinci ciri-ciri fisik (bahan linen, tanpa lengan, tiang besi) dan fungsi dari suatu objek spesifik yang tunggal (dalam hal ini, patung jahit/dress form di lab sekolah)."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Referencing the dress form text from the previous question.",
+                question: "Based on the text, what is the specific technical reason the dress form is covered in a durable, unbleached linen fabric?",
+                options: [
+                    "A. To make the dress form look highly fashionable and expensive for visitors.",
+                    "B. To make the entire mannequin completely waterproof against spills.",
+                    "C. To allow pattern-making students to stick sharp pins into it repeatedly during the draping process without destroying it.",
+                    "D. Because standard plastic retail mannequins are simply too heavy to move.",
+                    "E. To prevent the dress form from rolling away on its iron wheels."
+                ],
+                answer: 2,
+                explanation: "Teks memberikan penjelasan fungsional yang eksplisit: 'covered in a durable, unbleached linen fabric... allows students to aggressively stick hundreds of sharp pins directly into the torso without causing any permanent damage'."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Reading Text:\nNatural pure silk is widely considered the most luxurious and coveted natural fiber in the history of the world. Originating from the careful cultivation of silkworms (sericulture), it is highly prized by high-end fashion houses for its incredibly smooth, friction-free texture, its natural, brilliant luster that shimmers under sunlight, and its exceptional, fluid drape. Despite its incredibly delicate and almost translucent appearance, a single, continuous strand of silk is surprisingly tough—often compared by scientists to the tensile strength of a steel wire of the exact same diameter. However, maintaining silk is notoriously difficult; the protein fibers are extremely sensitive to high ironing temperatures and alkaline chemical detergents, meaning the fabric strictly requires delicate hand-washing with mild soap or professional dry cleaning.",
+                question: "According to the detailed text, what is a highly surprising physical characteristic of silk despite its delicate, fragile appearance?",
+                options: [
+                    "A. It is very cheap and easy to produce in large factories.",
+                    "B. It is highly resistant to being burned by hot irons.",
+                    "C. It is incredibly strong, possessing a tensile strength comparable to steel wire of the same thickness.",
+                    "D. It can be safely washed in a machine with any strong chemical detergent.",
+                    "E. It completely lacks any natural shine or luster when exposed to light."
+                ],
+                answer: 2,
+                explanation: "Teks menyebutkan fakta fisika yang mengejutkan tentang sutra: 'Despite its incredibly delicate... appearance, a single, continuous strand of silk is surprisingly tough—often compared by scientists to the tensile strength of a steel wire'."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Grammar Check (Adjective Order):\nYou are writing a captivating product catalog description for a newly designed skirt you found in a traditional market in Yogyakarta. You need to combine the following adjectives seamlessly to describe the fabric: [cotton, soft, blue, Indonesian].",
+                question: "According to standard English grammar rules, which sentence uses the correct Adjective Order?",
+                options: [
+                    "A. Look at this blue soft Indonesian cotton skirt.",
+                    "B. Look at this Indonesian soft blue cotton skirt.",
+                    "C. Look at this soft blue Indonesian cotton skirt.",
+                    "D. Look at this cotton soft blue Indonesian skirt.",
+                    "E. Look at this soft Indonesian blue cotton skirt."
+                ],
+                answer: 2,
+                explanation: "Aturan Adjective Order dalam bahasa Inggris (OSASCOMP): Opinion/Quality (soft) - Color (blue) - Origin (Indonesian) - Material (cotton). Sehingga susunan yang tepat adalah: 'soft blue Indonesian cotton'."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Reading Text Excerpt:\n'The traditional Javanese Kebaya is a stunning, timeless example of Indonesian sartorial heritage. The main bodice is usually crafted from sheer, highly delicate brocade or floral lace, featuring incredibly intricate hand-beaded embroidery along the scalloped edges. It is tailored tightly with precision darts to closely follow the elegant contours of the wearer's body, often paired with a vibrant, contrasting batik sarong...'",
+                question: "In the context of textiles and fashion design, what does the word 'sheer' mean?",
+                options: [
+                    "A. Very thick, heavy, and suitable for winter.",
+                    "B. Transparent or semi-transparent, allowing light to pass through.",
+                    "C. Very brightly and aggressively colored.",
+                    "D. Completely waterproof and made of plastic.",
+                    "E. Woven from rough, scratchy sheep's wool."
+                ],
+                answer: 1,
+                explanation: "Dalam terminologi tekstil, 'sheer' merujuk pada kain yang sangat tipis dan tembus pandang atau semi-transparan (seperti karakteristik kain brokat, tule, atau sifon pada pakaian kebaya tradisional)."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Understanding Text Structures:\nIn English text genres, Descriptive texts generally consist of two main generic structures that separate the introduction of the object from its detailed features.",
+                question: "What are the two foundational parts (generic structure) of a standard Descriptive Text?",
+                options: [
+                    "A. Orientation (setting the scene) and Complication (the problem).",
+                    "B. General Classification (broad category) and Description.",
+                    "C. Identification (introducing the specific subject) and Description (detailing its features).",
+                    "D. Goal (the aim) and Steps (the instructions).",
+                    "E. Thesis (main argument) and Arguments (supporting facts)."
+                ],
+                answer: 2,
+                explanation: "Struktur generik baku dari Teks Deskriptif adalah: 1. Identification (mengidentifikasi/memperkenalkan satu objek spesifik yang akan dideskripsikan) dan 2. Description (mendeskripsikan ciri-ciri fisik, sifat, atau fungsi objek tersebut secara rinci)."
+            },
+            {
+                lesson: "Lesson 3: Descriptive Texts",
+                context: "Reading Text:\n'My personal pair of 10-inch fabric shears is undoubtedly my most prized possession in the sewing lab. The heavy blades are drop-forged from premium high-carbon steel, making them incredibly sharp; they slice through thick denim with a deeply satisfying, metallic 'snip'. The handles are thoughtfully coated in a thick, matte black rubber, ergonomically angled specifically for my right hand. This unique asymmetrical angle ensures that the lower blade rests perfectly flat against the cutting table, preventing the fabric from lifting and shifting while I cut.'",
+                question: "How does the author specifically describe the physical features of the handles of the fabric shears?",
+                options: [
+                    "A. They are made of shiny, unpainted silver metal that feels cold.",
+                    "B. They are perfectly symmetrical so that both left-handed and right-handed users can share them.",
+                    "C. They are coated in matte black rubber and ergonomically angled for a right-handed grip.",
+                    "D. They are made of cheap, hollow plastic and break very easily under pressure.",
+                    "E. They are beautifully painted with colorful, traditional floral patterns."
+                ],
+                answer: 2,
+                explanation: "Teks secara sangat spesifik mendeskripsikan pegangan gunting (handles): 'coated in a thick, matte black rubber, ergonomically angled specifically for my right hand'."
+            },
+
+            // LESSON 4: Giving Command for fashion (6 soal)
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Situation: You are in the school's production lab. The teacher sees a student leaning far too close to the sewing machine needle while pressing the foot pedal at full speed (4000 stitches per minute). The machine is humming loudly. This is a highly dangerous situation that could result in a pierced finger or eye injury.",
+                question: "What is the most appropriate, direct, and urgent command the teacher should shout to ensure immediate safety?",
+                options: [
+                    "A. Would you mind sewing just a little bit slower, please?",
+                    "B. Stop the machine immediately and sit back!",
+                    "C. I think you should probably check your needle when you have time.",
+                    "D. Let's take a break and sing a song while we sew.",
+                    "E. Can you thread the lower bobbin for me?"
+                ],
+                answer: 1,
+                explanation: "Dalam situasi gawat darurat atau bahaya (safety hazard), perintah (command/imperative) tidak boleh bertele-tele. Ia harus diucapkan secara langsung, tegas, dan keras tanpa basa-basi untuk menghentikan bahaya: 'Stop the machine immediately...!'."
+            },
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Situation: A master tailor is conducting a final fitting on a nervous bride. The bridal gown has a 3-meter long train, and every millimeter of the hemline matters. However, the client keeps looking down at her own feet to see the dress, which hunches her shoulders, changes her posture, and completely ruins the accuracy of the hemline measurement.",
+                question: "Which command should the tailor use to correct the client's posture politely but firmly?",
+                options: [
+                    "A. Don't look at me or the dress!",
+                    "B. Please stand up straight, relax your shoulders, and look directly at the mirror ahead of you.",
+                    "C. Stop moving right now, you are ruining the entire measurement process.",
+                    "D. Look down at your shoes so I can measure your neck.",
+                    "E. Go home and fix your bad posture before coming back."
+                ],
+                answer: 1,
+                explanation: "Memberikan instruksi/perintah (command) kepada klien (customer service) harus tetap menjunjung tinggi kesopanan ('Please...') namun dengan instruksi fisik yang sangat spesifik dan jelas ('stand up straight... look directly at the mirror')."
+            },
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Situation: You are mentoring a junior student on how to cut expensive Italian silk for a structured corset. You notice they are positioning the paper pattern diagonally, about to cut the fabric across the bias (grainline). Cutting this specific piece on the bias will cause the corset to stretch poorly and lose its rigid shape.",
+                question: "Which of the following sentences is an example of a Negative Command (Prohibition) appropriate for this context?",
+                options: [
+                    "A. Cut the fabric slowly and carefully.",
+                    "B. Please make sure to cut exactly along the straight grainline.",
+                    "C. Do not cut across the bias or crossgrain for this pattern piece!",
+                    "D. You should probably use much sharper scissors for silk.",
+                    "E. I strongly suggest you measure the table again."
+                ],
+                answer: 2,
+                explanation: "Negative Command (Larangan/Prohibition) dalam tata bahasa Inggris selalu diawali dengan auxiliary verb 'Do not...' atau 'Don't...'. Pilihan C secara langsung melarang sebuah tindakan yang salah."
+            },
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Grammar Analysis: Giving Commands / Imperative Sentences.\nIn technical fashion manuals, instructions are written to be as clear and concise as possible, avoiding unnecessary words.",
+                question: "What is the key grammatical characteristic that defines an imperative sentence (a command)?",
+                options: [
+                    "A. It always ends with a question mark to ask for permission.",
+                    "B. It intentionally omits the subject ('You') and starts directly with a base verb (V1).",
+                    "C. It always uses the Past Tense to describe what happened before.",
+                    "D. It must always contain the polite word 'please' at the beginning.",
+                    "E. It always functions as an adjective describing a noun."
+                ],
+                answer: 1,
+                explanation: "Ciri utama kalimat perintah (imperative sentence) adalah hilangnya subjek secara tertulis (meskipun subjek tersiratnya adalah 'You') dan kalimat langsung dieksekusi dengan kata kerja dasar atau Verb 1 (contoh: 'Cut the fabric', 'Press the seam', 'Sew the hem')."
+            },
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Situation: The head patternmaker is stressed due to a looming deadline for Jakarta Fashion Week. She quickly hands you a completed paper pattern covered in complex markings and gives you verbal instructions for the next immediate step.",
+                question: "Based on the options below, which sentence is a direct, actionable command related to pattern making?",
+                options: [
+                    "A. Transfer all the notches, darts, and grainlines onto the muslin fabric using tracing paper.",
+                    "B. I personally think that blue tracing paper is very useful.",
+                    "C. Did you remember to transfer the notches yesterday?",
+                    "D. The blank muslin fabric is sitting on the cutting table.",
+                    "E. We usually use tailor's chalk for this kind of work."
+                ],
+                answer: 0,
+                explanation: "Pilihan A adalah satu-satunya kalimat perintah (command). Kalimat ini langsung memberikan instruksi tindakan kepada pendengar, diawali dengan kata kerja dasar 'Transfer' tanpa basa-basi."
+            },
+            {
+                lesson: "Lesson 4: Giving Command",
+                context: "Situation: A 10th-grade student is about to iron a delicate, hand-painted silk scarf. You notice the industrial gravity-feed iron is currently set to the 'Cotton/Linen' setting (the absolute highest heat setting available). As they reach for the iron, you smell the intense heat of the metal.",
+                question: "How should the teacher give a rapid command to prevent the expensive silk fabric from instantly melting and burning?",
+                options: [
+                    "A. Turn the iron off, pack your bags, and go home.",
+                    "B. Turn the temperature dial down to the 'Silk/Low' setting immediately before pressing that fabric!",
+                    "C. Please try to iron the scarf as fast as you physically can.",
+                    "D. Do not use the ironing board, use the floor instead.",
+                    "E. Wash the silk in boiling hot water first to prepare it."
+                ],
+                answer: 1,
+                explanation: "Perintah (command) yang tepat dan logis secara teknis untuk menyelamatkan kain adalah menginstruksikan siswa menurunkan suhu setrika (Turn the temperature dial down) karena bahan sutra tidak tahan panas tinggi."
+            },
+
+            // LESSON 5: Report Texts for fashion (7 soal)
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Reading Text:\nCotton is unequivocally the most widely produced natural cellulosic fiber in the global textile industry. Cultivated in warm climates worldwide, it is harvested from the fluffy, protective boll (seed pod) of the cotton plant. Because it is a natural plant-based fiber, its microscopic structure makes cotton highly breathable, meaning it allows air to circulate freely through the fabric, helping to cool the human body. Furthermore, cotton is highly absorbent; it can hold up to 27 times its own weight in water without feeling completely drenched. These combined properties make it the ideal textile choice for hot, tropical climates, summer activewear, and undergarments. However, on the downside, pure untreated cotton wrinkles very easily and is prone to shrinkage if washed in hot water or dried on high heat.",
+                question: "Based on this factual Report Text, what two specific properties make cotton the ideal fabric for hot climates?",
+                options: [
+                    "A. It shrinks when washed in hot water and fades in the sun.",
+                    "B. It is highly breathable (allows air circulation) and highly absorbent.",
+                    "C. It wrinkles very easily and requires constant ironing.",
+                    "D. It is a man-made synthetic fiber that repels water.",
+                    "E. It is very heavy, thick, and purposely traps body heat."
+                ],
+                answer: 1,
+                explanation: "Teks Laporan (Report) ini secara faktual dan ilmiah menyatakan bahwa kapas/katun ideal untuk cuaca panas karena sifatnya yang 'highly breathable' (bernapas/sirkulasi udara baik) dan 'absorbent' (mampu menyerap air/keringat dalam jumlah banyak)."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Referencing the Cotton text from the previous question.",
+                question: "In the structure of a Report Text, what is the academic term for the opening sentence: 'Cotton is unequivocally the most widely produced natural cellulosic fiber in the global textile industry.'?",
+                options: [
+                    "A. Complication",
+                    "B. Detailed Description",
+                    "C. General Classification",
+                    "D. Resolution",
+                    "E. Procedural Steps"
+                ],
+                answer: 2,
+                explanation: "Dalam genre Teks Laporan (Report Text), kalimat atau paragraf awal yang mendefinisikan dan mengklasifikasikan subjek secara umum (apa itu katun dalam skala global) disebut sebagai 'General Classification'."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Reading Text:\nSynthetic fibers, completely unlike natural fibers, are entirely man-made through complex industrial chemical processes. Polyester, nylon, spandex, and acrylic are the most prevalent examples in modern fast fashion. These fibers do not grow in fields; rather, they are created by melting plastic polymers—which are largely derived from non-renewable petroleum (crude oil). This thick, hot chemical liquid is then forced through microscopic holes in a metal showerhead-like device called a spinneret. As the liquid hits the cool air, it solidifies into long, continuous plastic threads. Synthetic fabrics are incredibly durable, inherently wrinkle-resistant, and extraordinarily cheap to mass-produce. However, they carry a massive environmental cost: they are not biodegradable. When washed in domestic washing machines, the friction causes them to shed microscopic pieces of plastic, known as microplastics, directly into the wastewater system, posing a devastating threat to marine ecosystems and the global food chain.",
+                question: "According to the scientific report, how are synthetic fibers physically formed in factories?",
+                options: [
+                    "A. They are carefully harvested from the seed pods of modified plants.",
+                    "B. They are shorn from the fleece of genetically engineered sheep.",
+                    "C. By melting petroleum-based plastic polymers and forcing the hot liquid through a spinneret.",
+                    "D. By weaving natural silk and cotton together on a computerized wooden loom.",
+                    "E. By boiling ancient tree bark in large, acidic cauldrons."
+                ],
+                answer: 2,
+                explanation: "Fakta ilmiah dalam teks menjelaskan proses ekstrusi sintetis: 'melting plastic polymers... and forcing the... liquid through microscopic holes in a... device called a spinneret'."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Referencing the Synthetic Fibers report text.",
+                question: "What is the major, invisible environmental consequence (cause and effect) of simply washing synthetic clothes at home?",
+                options: [
+                    "A. They shrink instantly and become unwearable, filling up landfills.",
+                    "B. They release invisible microplastics into the wastewater, severely harming marine life.",
+                    "C. They absorb too much water, breaking household washing machines.",
+                    "D. They chemically revert back into sticky petroleum oil.",
+                    "E. They become biodegradable and dissolve completely in the washing machine."
+                ],
+                answer: 1,
+                explanation: "Teks melaporkan fakta lingkungan yang krusial: 'When washed... they shed microscopic pieces of plastic, known as microplastics, directly into the wastewater system, posing a devastating threat to marine ecosystems'."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Understanding English Text Types: Report vs. Descriptive.\nStudents often confuse Report Texts with Descriptive Texts because both convey factual information about a subject.",
+                question: "What is the primary, defining difference between a Report Text and a Descriptive Text in the context of fashion studies?",
+                options: [
+                    "A. A Report text tells a fictional myth, while a Descriptive text tells true facts.",
+                    "B. A Report text describes a broad, general class of things (e.g., 'Sewing Machines as an invention'), while a Descriptive text describes one specific, unique thing (e.g., 'My Grandmother's Vintage Singer Machine').",
+                    "C. A Report text is always written strictly in the past tense.",
+                    "D. A Descriptive text is only used for giving step-by-step commands.",
+                    "E. There is absolutely no difference; they are just two names for the exact same thing."
+                ],
+                answer: 1,
+                explanation: "Perbedaan utamanya terletak pada cakupan bahasannya (HOTS). Report text membahas subjek secara umum/ilmiah dan mewakili keseluruhan spesies/jenis (General/Broad). Sedangkan Descriptive text membahas satu benda yang sangat spesifik, personal, atau unik (Specific)."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Reading Text (Historical Report):\nThe invention and popularization of the lockstitch sewing machine in the mid-19th century completely revolutionized the global garment industry and transformed society. Before its widespread factory adoption, every single piece of clothing, from corsets to military uniforms, was meticulously sewn by hand. This was an agonizingly slow, labor-intensive process that made clothing relatively expensive and scarce. With the introduction of the mechanized sewing machine, factories could suddenly mass-produce durable clothing at unprecedented speeds. This technological shift directly led to the rise of ready-to-wear (prêt-à-porter) fashion, making stylish, standardized clothing affordable and accessible to the general working-class public, effectively breaking the fashion monopoly of the wealthy elite.",
+                question: "Based on the historical report, what was the primary societal and economic result of the sewing machine's invention?",
+                options: [
+                    "A. Clothing became much more expensive and rare due to machine costs.",
+                    "B. People rejected machines and stopped wearing clothes altogether.",
+                    "C. It caused the rapid rise of mass-produced, affordable ready-to-wear fashion for the general public.",
+                    "D. Slow hand-sewing became even more popular and demanded in large factories.",
+                    "E. Only the wealthy elite were allowed by law to buy and operate sewing machines."
+                ],
+                answer: 2,
+                explanation: "Teks melaporkan fakta sejarah bahwa mesin jahit mempercepat produksi, yang berdampak pada ekonomi masyarakat: 'led to the rise of ready-to-wear (prêt-à-porter) fashion, making stylish... clothing affordable and accessible to the general working-class public'."
+            },
+            {
+                lesson: "Lesson 5: Report Texts",
+                context: "Referencing the Historical Report text on the sewing machine.",
+                question: "What does the hyphenated phrase 'labor-intensive' mean in the context of describing historical hand-sewing?",
+                options: [
+                    "A. Requiring very little physical effort or time to complete.",
+                    "B. Requiring a massive amount of physical human effort, skill, and hours to produce a single item.",
+                    "C. A process done entirely by automated, steam-powered robots.",
+                    "D. A specific type of sewing that must be done outdoors in the sun.",
+                    "E. Costing a lot of electricity to run the heavy machinery."
+                ],
+                answer: 1,
+                explanation: "Secara terminologi industri, 'labor-intensive' (padat karya) berarti suatu proses atau pekerjaan sangat bergantung pada, dan membutuhkan banyak, tenaga manusia, waktu, serta usaha fisik (seperti menjahit detail seluruh baju manual dengan tangan sebelum adanya mesin)."
+            },
+
+            // LESSON 6: Procedure Texts for fashion (7 soal)
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Procedure Text: 'How to Take an Accurate Waist Measurement'.\n1. Ensure the client is relaxed. Ask the client to stand naturally with their arms resting at their sides, without holding their breath or sucking in their stomach.\n2. Locate the client's natural waistline. This is anatomically the narrowest part of the torso, usually located just an inch or two above the belly button.\n3. Wrap a high-quality, flexible fiberglass measuring tape horizontally around the waist.\n4. Ensure the tape is snug against the body, but not tight. You must be able to comfortably slide one index finger between the tape measure and the client's body to account for 'ease'.\n5. Look straight at the tape and record the measurement accurately in centimeters on your chart.",
+                question: "Why does step 4 explicitly instruct the tailor to 'slide one index finger between the tape and the body'?",
+                options: [
+                    "A. To make sure the slippery tape measure doesn't fall to the floor.",
+                    "B. To discreetly check the client's body temperature.",
+                    "C. To intentionally add a standard amount of wearing 'ease' (kelonggaran) so the final tailored garment actually allows the client to breathe, sit, and move comfortably.",
+                    "D. To stretch the measuring tape so the final number looks larger than it is.",
+                    "E. To scratch the client's back if it is itchy."
+                ],
+                answer: 2,
+                explanation: "Teknik menyisipkan satu jari saat mengukur lingkar badan vital (waist/bust/hips) adalah prosedur standar ergonomi busana untuk memberikan 'ease' (kelonggaran bernapas dan bergerak) agar baju yang dihasilkan tidak terlalu ketat atau mencekik saat dipakai."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Referencing the 'How to Take an Accurate Waist Measurement' procedure.",
+                question: "What is the primary Goal (Aim) of this specific procedure text?",
+                options: [
+                    "A. To teach the reader how to draft and sew a tailored skirt.",
+                    "B. To advise the reader on where to buy a fiberglass measuring tape.",
+                    "C. To provide a step-by-step guide on how to accurately measure a human's natural waistline for garment construction.",
+                    "D. To give medical advice on how to help a client lose weight quickly.",
+                    "E. To explain the mechanical history of the sewing machine."
+                ],
+                answer: 2,
+                explanation: "Tujuan (Goal/Aim) dari teks prosedur biasanya tertera dengan jelas di bagian judulnya. Dalam hal ini, teks ini bertujuan memberikan panduan (step-by-step guide) cara mengukur lingkar pinggang alami klien secara akurat."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Procedure snippet: 'Threading a Hand-Sewing Needle'.\n'____, take your fabric shears and cut the end of the cotton thread at a sharp 45-degree angle; this prevents the microscopic fibers from fraying and splitting. ____, moisten the angled tip slightly with your lips to bind the fibers tightly together. ____, hold the needle up to a strong light, push the stiffened tip directly through the tiny eye of the needle, and pull a few inches through.'",
+                question: "Which set of sequential conjunctions (time connectives) best fills the blanks to create a logical, chronological order?",
+                options: [
+                    "A. Finally / Next / First",
+                    "B. First / Then / Finally",
+                    "C. Second / First / Third",
+                    "D. After that / First / Finally",
+                    "E. Then / Finally / First"
+                ],
+                answer: 1,
+                explanation: "Urutan kronologis (time connectives) yang baku dan logis dalam bahasa Inggris untuk memandu Teks Prosedur adalah: First (Pertama/langkah awal), Then/Next (Lalu/Selanjutnya), Finally (Terakhir/langkah penyelesaian)."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Procedure Text: 'Clipping Curves on a Neckline Facing'.\n'After you have finished sewing the curved neckline seam on the sewing machine, you must prepare the seam before turning it. Take small, sharp embroidery scissors and carefully clip (snip small v-shaped triangles into) the raw seam allowance, stopping exactly 2 millimeters before the actual stitch line. If you skip this crucial step and do not clip the curves, the tension of the fabric fibers will cause the fabric to pull and pucker uncontrollably, and the finished neckline will never lay flat smoothly against the wearer's chest.'",
+                question: "According to the technical procedure, what is the direct consequence of NOT clipping the curved seam allowance?",
+                options: [
+                    "A. The neckline will look perfectly flat, smooth, and professional.",
+                    "B. The fabric fibers will pull and pucker, preventing the neckline from ever laying flat against the body.",
+                    "C. The sewing machine thread will instantly break from the pressure.",
+                    "D. The needle will get permanently stuck in the thick fabric.",
+                    "E. The garment will instantly shrink the next time it is washed."
+                ],
+                answer: 1,
+                explanation: "Teks menjelaskan prinsip sebab-akibat (HOTS) dalam menjahit lekukan: 'If you skip this... do not clip... the fabric will pull and pucker uncontrollably, and the finished neckline will never lay flat' (kain akan menarik/mengkerut dan leher busana tidak bisa rebah rata pada tubuh)."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Grammar in Procedure Texts:\nProcedure texts heavily rely on the use of 'Action Verbs' to command the reader to perform physical tasks.",
+                question: "From the vocabulary lists below, which group contains ONLY action verbs that are commonly used in garment construction procedures?",
+                options: [
+                    "A. Pin, Cut, Sew, Press, Trim.",
+                    "B. Beautiful, Red, Shiny, Soft, Heavy.",
+                    "C. Quickly, Carefully, Slowly, Firmly, Gently.",
+                    "D. Machine, Thread, Needle, Fabric, Scissors.",
+                    "E. Am, Is, Are, Was, Were."
+                ],
+                answer: 0,
+                explanation: "Action verbs (kata kerja tindakan fisik) yang mendominasi prosedur dunia jahit adalah menyemat jarum (pin), memotong (cut), menjahit (sew), menyetrika/menekan (press), dan merapikan/memangkas pinggiran (trim). Pilihan B adalah Adjectives, C adalah Adverbs, D adalah Nouns."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Troubleshooting Procedure: 'Replacing a Shattered Sewing Machine Needle'.\n1. Safety first: Turn off the sewing machine's main power switch immediately.\n2. Locate the needle clamp screw and loosen it by turning the small screwdriver counter-clockwise.\n3. Remove the broken metal shards of the needle and carefully dispose of them in a designated hard-plastic 'sharps' container.\n4. Take a new needle. Insert the new needle up into the clamp, ensuring the flat side of the needle shank faces towards the back of the machine.\n5. Hold the needle in place and tighten the screw securely clockwise.",
+                question: "In step 4, how must the anatomy of the new needle be oriented when inserted into a standard sewing machine?",
+                options: [
+                    "A. The flat side of the shank must face the front of the machine, looking at the user.",
+                    "B. The flat side of the shank must face sideways to the left.",
+                    "C. The flat side of the needle shank must face the back of the machine.",
+                    "D. The needle should be inserted upside down with the point facing the ceiling.",
+                    "E. It doesn't matter which direction it faces, just push it in as hard as possible."
+                ],
+                answer: 2,
+                explanation: "Aturan teknis penggantian jarum mesin jahit standar tertera sangat jelas di dalam teks: 'ensuring the flat side of the needle shank faces towards the back of the machine' (bagian pangkal jarum yang pipih harus selalu menghadap ke belakang mesin)."
+            },
+            {
+                lesson: "Lesson 6: Procedure Texts",
+                context: "Referencing the 'Replacing a Shattered Sewing Machine Needle' troubleshooting text.",
+                question: "Based on laboratory protocols mentioned in step 3, why must the broken needle shards be disposed of specifically in a 'designated sharps container' rather than a normal trash can?",
+                options: [
+                    "A. Because broken metal can be recycled and sold for extra money.",
+                    "B. To ensure strict laboratory safety; throwing razor-sharp broken needles in a regular thin plastic trash bag can easily pierce the bag and severely injure the hands of the cleaning staff.",
+                    "C. Because the fashion teacher wants to collect broken needles as a hobby.",
+                    "D. So you can easily find it and use it again later if you run out of needles.",
+                    "E. To prevent the metal needle from causing a fire in the trash can."
+                ],
+                answer: 1,
+                explanation: "Prosedur Kesehatan dan Keselamatan Kerja (K3) di laboratorium jahit mensyaratkan: Benda tajam (jarum patah/silet) dilarang dibuang di tong sampah biasa karena berpotensi menembus plastik sampah dan melukai petugas kebersihan yang membuangnya. Harus dibuang ke wadah khusus benda tajam (sharps container) yang keras."
+            }
+        ];
+
+        // APP STATE
+        let currentStep = 'login'; 
+        let studentData = { name: '', nis: '', class: '' };
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+        let flaggedQuestions = new Array(questions.length).fill(false);
+        let timeLeft = 60 * 60; // 60 minutes
+        let timerInterval = null;
+        let cheatingCount = 0;
+        let maxCheatingWarnings = 3;
+        
+        // --- TAUTAN SPREADSHEET UNTUK PAKET D ---
+        const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyotM6DOqX_UN_sVEv1KOHRxbZyAN7tNbd0ipIDc3YTv7VHVMPKKy126YO42ag_ISeNMg/exec';
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('login-name').value.trim();
+            const nis = document.getElementById('login-nis').value.trim();
+            const studentClass = document.getElementById('login-class').value;
+
+            if (!name || !nis || !studentClass) return;
+
+            studentData = { name, nis, class: studentClass };
+            
+            document.getElementById('info-name').innerText = name;
+            document.getElementById('info-nis').innerText = nis;
+            document.getElementById('info-class').innerText = studentClass;
+            document.getElementById('header-student-info').classList.remove('hidden');
+
+            document.getElementById('view-login').classList.add('hidden');
+            document.getElementById('view-instruction').classList.remove('hidden');
+        }
+
+        function startExam() {
+            document.getElementById('view-instruction').classList.add('hidden');
+            document.getElementById('view-exam').classList.remove('hidden');
+            
+            requestFullscreenMode();
+            setupCheatingDetector();
+            startTimer();
+            renderQuestion();
+            renderNavigator();
+        }
+
+        function requestFullscreenMode() {
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log(err));
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function setupCheatingDetector() {
+            document.addEventListener("visibilitychange", function() {
+                if (document.hidden && currentStep === 'exam') {
+                    triggerCheatingViolation("kamu terdeteksi berpindah tab atau meminimize aplikasi.");
+                }
+            });
+
+            document.addEventListener("fullscreenchange", function() {
+                if (!document.fullscreenElement && currentStep === 'exam') {
+                    triggerCheatingViolation("kamu terdeteksi keluar dari mode layar penuh.");
+                }
+            });
+            document.addEventListener("webkitfullscreenchange", function() {
+                if (!document.webkitFullscreenElement && currentStep === 'exam') {
+                    triggerCheatingViolation("kamu terdeteksi keluar dari mode layar penuh.");
+                }
+            });
+        }
+
+        function triggerCheatingViolation(reason) {
+            cheatingCount++;
+            if (cheatingCount <= maxCheatingWarnings) {
+                const msg = `⚠️ Peringatan ke-${cheatingCount} dari 3: ${reason} Jangan keluar dari aplikasi. Jika mencapai 3x, ujian otomatis dikumpulkan.`;
+                document.getElementById('warning-msg').innerText = msg;
+                document.getElementById('warning-modal').classList.remove('hidden');
+            } else {
+                submitExamDueToCheating();
+            }
+        }
+
+        function dismissWarning() {
+            document.getElementById('warning-modal').classList.add('hidden');
+            requestFullscreenMode();
+        }
+
+        function submitExamDueToCheating() {
+            document.getElementById('warning-modal').classList.add('hidden');
+            finishExam();
+        }
+
+        function startTimer() {
+            currentStep = 'exam';
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    let minutes = Math.floor(timeLeft / 60);
+                    let seconds = timeLeft % 60;
+                    document.getElementById('timer-display').innerText = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                } else {
+                    clearInterval(timerInterval);
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestionIndex];
+            document.getElementById('current-q-num').innerText = currentQuestionIndex + 1;
+            document.getElementById('q-number-title').innerText = currentQuestionIndex + 1;
+            document.getElementById('exam-lesson-badge').innerText = q.lesson;
+
+            let questionContent = '';
+            if (q.context) {
+                questionContent += `<div class="mb-4 text-sm text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 whitespace-pre-line">${q.context}</div>`;
+            }
+            questionContent += `<div class="font-medium">${q.question}</div>`;
+            
+            document.getElementById('question-text').innerHTML = questionContent;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentQuestionIndex] === idx;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `w-full text-left p-3.5 rounded-xl border text-sm font-medium transition flex items-center space-x-3 ${
+                    isSelected 
+                        ? 'bg-teal-50 border-teal-500 text-teal-900 shadow-sm' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-700'
+                }`;
+                
+                btn.innerHTML = `
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                        isSelected ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-600'
+                    }">${String.fromCharCode(65 + idx)}</div>
+                    <span>${opt.substring(3)}</span>
+                `;
+                
+                btn.onclick = () => selectAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            const isFlagged = flaggedQuestions[currentQuestionIndex];
+            const flagBtn = document.getElementById('btn-flag');
+            if (isFlagged) {
+                flagBtn.className = "text-xs font-medium px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 text-amber-700 transition flex items-center space-x-1.5";
+                document.getElementById('flag-text').innerText = "Ragu-ragu (Ditandai)";
+            } else {
+                flagBtn.className = "text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 transition flex items-center space-x-1.5";
+                document.getElementById('flag-text').innerText = "Tandai Ragu";
+            }
+
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            document.getElementById('btn-prev').style.opacity = currentQuestionIndex === 0 ? '0.5' : '1';
+        }
+
+        function selectAnswer(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+            renderQuestion();
+            renderNavigator();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentQuestionIndex = index;
+            renderQuestion();
+        }
+
+        function toggleFlagCurrent() {
+            flaggedQuestions[currentQuestionIndex] = !flaggedQuestions[currentQuestionIndex];
+            renderQuestion();
+            renderNavigator();
+        }
+
+        function renderNavigator() {
+            const grid = document.getElementById('navigator-grid');
+            grid.innerHTML = '';
+
+            questions.forEach((_, idx) => {
+                const isAnswered = userAnswers[idx] !== null;
+                const isFlagged = flaggedQuestions[idx];
+                const isCurrent = currentQuestionIndex === idx;
+
+                let btnClass = "w-9 h-9 rounded-xl text-xs font-bold transition flex items-center justify-center border ";
+                
+                if (isCurrent) {
+                    btnClass += "ring-2 ring-teal-600 ring-offset-2 ";
+                }
+
+                if (isFlagged) {
+                    btnClass += "bg-amber-500 text-white border-amber-600";
+                } else if (isAnswered) {
+                    btnClass += "bg-teal-600 text-white border-teal-700";
+                } else {
+                    btnClass += "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200";
+                }
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = btnClass;
+                btn.innerText = idx + 1;
+                btn.onclick = () => jumpToQuestion(idx);
+                grid.appendChild(btn);
+            });
+        }
+
+        function confirmSubmitExam() {
+            document.getElementById('submit-modal').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submit-modal').classList.add('hidden');
+        }
+
+        function submitExam() {
+            document.getElementById('submit-modal').classList.add('hidden');
+            finishExam();
+        }
+
+        function finishExam() {
+            currentStep = 'result';
+            if (timerInterval) clearInterval(timerInterval);
+
+            let correctCount = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            const finalScore = Math.round((correctCount / questions.length) * 100);
+
+            document.getElementById('view-exam').classList.add('hidden');
+            document.getElementById('view-result').classList.remove('hidden');
+            document.getElementById('header-student-info').classList.add('hidden');
+
+            document.getElementById('result-score').innerText = finalScore;
+            document.getElementById('res-name').innerText = studentData.name;
+            document.getElementById('res-nis').innerText = studentData.nis;
+            document.getElementById('res-class').innerText = studentData.class;
+            document.getElementById('res-correct').innerText = `${correctCount} / ${questions.length}`;
+
+            generateReflection(finalScore, correctCount);
+            generateReviewList();
+            sendDataToGoogleScript(finalScore, correctCount);
+        }
+
+        function generateReflection(score, correctCount) {
+            const reflectionEl = document.getElementById('reflection-text');
+            let text = "";
+            if (score >= 85) {
+                text = `Hebat sekali, ${studentData.name}! Anda menunjukkan pemahaman Dasar Kejuruan Busana (Paket D) yang luar biasa dengan ${correctCount}/40 benar. Anda sudah memahami teknik dasar alat, negosiasi, dan K3 dengan sangat baik.`;
+            } else if (score >= 70) {
+                text = `Kerja bagus, ${studentData.name}! Menjawab soal HOTS Paket D untuk pemula tidaklah mudah, namun Anda meraih ${correctCount}/40 benar. Terus asah pemahaman kosakata alat jahit dan prosedur keselamatan ya.`;
+            } else {
+                text = `Tetap semangat, ${studentData.name}! Ujian ini butuh ketelitian membaca konteks. Anda memperoleh ${correctCount} jawaban benar dari 40 soal. Gunakan menu Pembahasan di bawah ini untuk mempelajari logika dasar teknik menjahit.`;
+            }
+            reflectionEl.innerText = text;
+        }
+
+        function generateReviewList() {
+            const reviewListEl = document.getElementById('review-list');
+            reviewListEl.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.answer;
+                const userAnsText = userAns !== null ? q.options[userAns] : "Tidak dijawab";
+                const correctAnsText = q.options[q.answer];
+
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-xl border ${isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            Soal ${idx + 1} - ${q.lesson}
+                        </span>
+                        <span class="text-xs font-semibold ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}">
+                            ${isCorrect ? '✓ Benar' : '✗ Belum Tepat'}
+                        </span>
+                    </div>
+                    ${q.context ? `<div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200 mb-2 whitespace-pre-line">${q.context}</div>` : ''}
+                    <p class="text-sm font-medium text-slate-800 mb-3">${q.question}</p>
+                    <div class="text-xs space-y-1 mb-3 bg-white p-3 rounded-lg border border-slate-200">
+                        <p class="text-slate-600">Jawaban Anda: <span class="font-semibold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${userAnsText}</span></p>
+                        <p class="text-slate-600">Kunci Jawaban: <span class="font-semibold text-emerald-700">${correctAnsText}</span></p>
+                    </div>
+                    <div class="text-xs text-slate-700 bg-teal-50/60 p-3 rounded-lg border border-teal-100">
+                        <span class="font-bold text-teal-900 block mb-1">Pembahasan (HOTS):</span>
+                        ${q.explanation}
+                    </div>
+                `;
+                reviewListEl.appendChild(div);
+            });
+        }
+
+        function toggleReviewSection() {
+            const reviewSection = document.getElementById('review-section');
+            const btnText = document.getElementById('btn-toggle-review-text');
+            if (reviewSection.classList.contains('hidden')) {
+                reviewSection.classList.remove('hidden');
+                btnText.innerText = "Sembunyikan Pembahasan";
+                reviewSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                reviewSection.classList.add('hidden');
+                btnText.innerText = "Lihat Pembahasan Soal";
+            }
+        }
+
+        function sendDataToGoogleScript(score, correctCount) {
+            const statusEl = document.getElementById('submission-status');
+            statusEl.innerText = "Mengirim hasil ujian ke Google Spreadsheet guru...";
+
+            const payload = {
+                timestamp: new Date().toLocaleString('id-ID'),
+                name: studentData.name,
+                kelas: studentData.class,
+                nis: studentData.nis,
+                score: score,
+                correctAnswers: correctCount,
+                cheatWarnings: cheatingCount,
+                cheatNotes: cheatingCount >= maxCheatingWarnings ? "Diskualifikasi (Sistem)" : (cheatingCount > 0 ? "Terdeteksi keluar fullscreen/tab" : "Aman")
+            };
+
+            fetch(googleScriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                statusEl.innerText = "✓ Nilai berhasil terekap ke Google Spreadsheet guru (Paket D - Grade 10).";
+                statusEl.className = "text-xs text-emerald-600 mb-6 font-semibold";
+            })
+            .catch(error => {
+                console.error('Error submitting:', error);
+                statusEl.innerText = "⚠️ Gagal mengirim data. Pastikan koneksi internet aktif.";
+                statusEl.className = "text-xs text-rose-600 mb-6 font-semibold";
+            });
+        }
+    </script>
+</body>
+</html>
